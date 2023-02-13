@@ -38,7 +38,7 @@ public class InventoryServiceImpl implements  InventoryService{
 
     @Override
     public boolean isSufficentFundsAvailable() {
-        inventoryRepository.findAll()
+        inventoryRepository.findAll();
         return false;
     }
 

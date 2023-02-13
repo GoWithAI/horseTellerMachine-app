@@ -62,6 +62,7 @@ public class DisplayMainScreen implements  DisplayControl{
 
     @Override
     public void betHourse(int horseNumber, int betAmount) {
+        System.out.println("PENDING BET Horse");
     //validate horse
         //validate winner or loser
         // calculateAmountWin

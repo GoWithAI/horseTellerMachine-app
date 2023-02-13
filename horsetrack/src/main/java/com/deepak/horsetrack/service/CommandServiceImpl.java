@@ -22,9 +22,12 @@ public class CommandServiceImpl implements CommandService{
     @Override
     public Command parseAndSetCommand(String command) throws  InvalidCommandException{
         Command commandModel = CommandStringToModel.converterFun.apply(command);
-        boolean match = supprotedCommand().stream().anyMatch( s -> s.equalsIgnoreCase(commandModel.getCommandValue()));
+        boolean match = supprotedCommand().stream().anyMatch( s -> s.equalsIgnoreCase(commandModel.getCommandKey()));
         if(match && commandModel.getCommandKey().equalsIgnoreCase("W") && !validateWinnerValue(commandModel))
             throw new InvalidCommandException("");
+        else if (match) {
+            return commandModel;
+        }
 
         if(!match && !parseBetCommand(commandModel))
             throw new InvalidCommandException("");
