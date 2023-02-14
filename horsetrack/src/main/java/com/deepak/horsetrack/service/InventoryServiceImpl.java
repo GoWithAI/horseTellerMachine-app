@@ -40,6 +40,7 @@ public class InventoryServiceImpl implements  InventoryService{
     @Override
     public boolean isSufficentFundsAvailable(int winAmount) {
         List<Inventory> inventories = inventoryRepository.findAll();
+        //we can extract below statement
         BiFunction<Integer, Inventory, Integer> availableAmount =  (total, inventory) -> total + (inventory.getDenomination() * inventory.getBillCount());
         Integer totalAvailableAmount = inventories.stream().reduce(0, availableAmount, Integer::sum);
         return (totalAvailableAmount -winAmount) >= 0 ;
