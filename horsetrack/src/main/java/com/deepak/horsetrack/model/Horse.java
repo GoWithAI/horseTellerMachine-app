@@ -6,11 +6,9 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="HORSE")
-//@Data
 @Getter
 @Setter
 @ToString
-//@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 public class Horse {

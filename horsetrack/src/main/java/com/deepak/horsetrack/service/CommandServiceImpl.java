@@ -31,8 +31,6 @@ public class CommandServiceImpl implements CommandService{
 
         if(!match && !parseBetCommand(commandModel))
             throw new InvalidCommandException("");
-        else
-            commandModel.setCommandKey("UB");
 
         return commandModel;
     }

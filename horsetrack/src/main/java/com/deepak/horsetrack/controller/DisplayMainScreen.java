@@ -118,7 +118,6 @@ public class DisplayMainScreen implements  DisplayControl{
         if (command.getCommandKey().equalsIgnoreCase("w"))
             winnerHorse(Integer.parseInt(command.getCommandValue()));
 
-        if (command.getCommandKey().equalsIgnoreCase("ub"))
             betHourse(Integer.parseInt(command.getCommandKey()), Integer.parseInt(command.getCommandValue()));
 
     }
