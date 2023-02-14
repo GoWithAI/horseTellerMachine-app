@@ -43,4 +43,25 @@ public class MessageService {
         Consumer<Horse> printHorseDetails = (h) -> System.out.println(h.getHorseNumber()+","+h.getHorseName()+","+h.getOdds()+","+h.getRaceStatus().toString().toLowerCase());
         horse.forEach(printHorseDetails);
     }
+
+    public void printHorses() {
+        Iterable<Horse> horses = horseRepository.findAll();
+        System.out.println("Horses:");
+        horses.forEach((horse) -> {
+            System.out.println(horse.getHorseNumber()
+                    +","+horse.getHorseName()
+                    +","+horse.getOdds()
+                    +","+horse.getRaceStatus().toString().toLowerCase());
+        });
+    }
+
+    public void printInventory() {Iterable<Inventory> inventories = inventoryRepository.findAll();
+        System.out.println("Inventory: ");
+        inventories.forEach((inventory) -> {
+            System.out.println("$"
+                    +inventory.getDenomination()
+                    +","+inventory.getBillCount());
+        });
+
+    }
 }

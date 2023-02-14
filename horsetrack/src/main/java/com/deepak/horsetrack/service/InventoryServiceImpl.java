@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.function.BiFunction;
 
 @Service
 public class InventoryServiceImpl implements  InventoryService{
@@ -37,13 +38,19 @@ public class InventoryServiceImpl implements  InventoryService{
     }
 
     @Override
-    public boolean isSufficentFundsAvailable() {
-        inventoryRepository.findAll();
-        return false;
+    public boolean isSufficentFundsAvailable(int winAmount) {
+        List<Inventory> inventories = inventoryRepository.findAll();
+        BiFunction<Integer, Inventory, Integer> availableAmount =  (total, inventory) -> total + (inventory.getDenomination() * inventory.getBillCount());
+        Integer totalAvailableAmount = inventories.stream().reduce(0, availableAmount, Integer::sum);
+        return (totalAvailableAmount -winAmount) >= 0 ;
     }
 
     @Override
-    public void reduceInventory(int denomination, int amount) {
+    public void reduceInventory(int denomination, int billCount) {
         Inventory inventory = inventoryRepository.findByDenominationEquals(denomination);
-    }
+        int currentBillCount = inventory.getBillCount();
+        inventory.setBillCount(currentBillCount - billCount);
+        inventoryRepository.save(inventory);
+        }
+
 }

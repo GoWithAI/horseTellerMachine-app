@@ -12,7 +12,7 @@ public interface InventoryService {
 
     public Inventory getInventory(int denomination);
 
-    public boolean isSufficentFundsAvailable();
+    public boolean isSufficentFundsAvailable(int winAmount);
 
     public void reduceInventory(int denomination, int amount);
 
